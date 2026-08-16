@@ -1,5 +1,5 @@
 name: "TruthSync — Docs Reality Check"
-description: "Detect status, command, and version drift between repository facts and documentation"
+description: "Find documentation that disagrees with repository status, commands, or package version"
 author: "jonathan-shizuka"
 
 branding:

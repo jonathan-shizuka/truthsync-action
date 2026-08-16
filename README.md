@@ -2,19 +2,19 @@
 
 [![CI](https://github.com/jonathan-shizuka/truthsync-action/actions/workflows/ci.yml/badge.svg)](https://github.com/jonathan-shizuka/truthsync-action/actions/workflows/ci.yml)
 
-**Keep repository facts and human-facing documentation in sync.**
+**Find documentation that no longer matches the repository.**
 
-TruthSync is a deterministic GitHub Action and CLI that catches documentation drift before it merges. It does not send source code to an LLM and needs only read access to the checked-out repository.
+TruthSync is a GitHub Action and CLI that checks documentation against repository files. It reports three concrete types of mismatch:
+
+- a YAML, JSON, or TOML file says a feature is live, while the documentation says it is draft;
+- documentation references an npm or Python command that the project does not declare;
+- a README shows a current version different from the root package manifest.
+
+It runs during pull requests and produces file annotations, a job summary, and a JSON report. The checks are deterministic, require only read access, and do not send repository content to an external service.
 
 ## Why
 
-Documentation often fails while every unit test stays green:
-
-- structured metadata says `status: live`, while nearby prose still says “status is draft”;
-- a contribution guide asks newcomers to run an npm script or Python tool the project no longer declares;
-- a README advertises a version that differs from the package manifest.
-
-These are not cosmetic defects. They break the repository's source of truth and make users decide from contradictory evidence.
+Tests can pass even when a README or contribution guide contains outdated instructions. TruthSync catches those inconsistencies in the same pull-request workflow used for code checks.
 
 TruthSync was motivated by two real first-contribution incidents in `secops-ng-framework`: [a live/draft status contradiction](https://github.com/secops-ng/secops-ng-framework/pull/941) and [stale validation commands in the PR template](https://github.com/secops-ng/secops-ng-framework/issues/942).
 
