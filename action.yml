@@ -1,0 +1,31 @@
+name: "TruthSync — Docs Reality Check"
+description: "Detect status, command, and version drift between repository facts and documentation"
+author: "jonathan-shizuka"
+
+branding:
+  icon: "check-circle"
+  color: "purple"
+
+inputs:
+  config:
+    description: "Path to the TruthSync configuration file"
+    required: false
+    default: ".truthsync.yml"
+  fail-on:
+    description: "Failure threshold: error, warning, or never"
+    required: false
+    default: "error"
+
+outputs:
+  findings-count:
+    description: "Total number of findings"
+  errors-count:
+    description: "Number of error-severity findings"
+  warnings-count:
+    description: "Number of warning-severity findings"
+  report-path:
+    description: "Path to the JSON evidence report"
+
+runs:
+  using: "node20"
+  main: "dist/index.js"

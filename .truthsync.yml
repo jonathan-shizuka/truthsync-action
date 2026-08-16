@@ -1,0 +1,12 @@
+include:
+  - "**/*.{md,mdx,yml,yaml,json,toml}"
+exclude:
+  - "dist/**"
+  - "node_modules/**"
+  - "examples/**"
+  - "CHANGELOG.md"
+rules:
+  status: true
+  commands: true
+  versions: true
+failOn: error
